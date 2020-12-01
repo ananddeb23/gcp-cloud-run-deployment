@@ -3,6 +3,7 @@ const app = express();
 
 app.get('/', (req, res) => {
   const name = process.env.NAME || 'World';
+  console.log('CONSOLING DTAT');
   res.send(`Hello ${name}!3`);
 });
 
