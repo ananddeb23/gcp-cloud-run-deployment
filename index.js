@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  const version = 4;
+  const version = 5;
   console.log('LOGGING Version', version);
   res.send(`Version ${version}`);
 });
