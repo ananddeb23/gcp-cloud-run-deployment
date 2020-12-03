@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  const name = process.env.NAME || 'World';
-  console.log('CONSOLING DTAT');
-  res.send(`Hello ${name}!3`);
+  const version = 4;
+  console.log('LOGGING Version', version);
+  res.send(`Version ${version}`);
 });
 
 const port = process.env.PORT || 8080;
