@@ -30,14 +30,15 @@ app.get('/redis', (req, res) => {
     res.set('Cache-Control', 'no-store');
     // client.set("key", "value!", redis.print);
     client.get("counter", (err, reply) => {
-        const counter = reply ? reply + 1 : 1;
-        client.set("counter", counter);
+        const counter = reply ? reply : 0;
+        const updatedCounter = counter + 1;
+        client.set("counter", updatedCounter);
       res.send(`
       <html>
         <head>
         </head>
         <body>
-          <p>Count of visitors: ${reply}</p>
+          <p>Count of visitors: ${counter}</p>
         </body>
       </html>
       `);
