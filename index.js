@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 const redis = require("redis");
 
-const client = redis.createClient({
-    "host": "10.223.214.131"
-  });
-  client.on("error", function(error) {
-    console.error(error);
-  });
+// const client = redis.createClient({
+//     "host": "10.223.214.131"
+//   });
+//   client.on("error", function(error) {
+//     console.error(error);
+//   });
 
 app.get('/', (req, res) => {
   const version = 5;
@@ -26,24 +26,24 @@ app.get('/uncached', (req, res) => {
     res.send(data);
 });
 
-app.get('/redis', (req, res) => {
-    res.set('Cache-Control', 'no-store');
-    // client.set("key", "value!", redis.print);
-    client.get("counter", (err, reply) => {
-        const counter = reply ? reply : 0;
-        const updatedCounter = counter + 1;
-        client.set("counter", updatedCounter);
-      res.send(`
-      <html>
-        <head>
-        </head>
-        <body>
-          <p>Count of visitors: ${counter}</p>
-        </body>
-      </html>
-      `);
-      });
-    });
+// app.get('/redis', (req, res) => {
+//     res.set('Cache-Control', 'no-store');
+//     // client.set("key", "value!", redis.print);
+//     client.get("counter", (err, reply) => {
+//         const counter = reply ? reply : 0;
+//         const updatedCounter = counter + 1;
+//         client.set("counter", updatedCounter);
+//       res.send(`
+//       <html>
+//         <head>
+//         </head>
+//         <body>
+//           <p>Count of visitors: ${counter}</p>
+//         </body>
+//       </html>
+//       `);
+//       });
+//     });
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
