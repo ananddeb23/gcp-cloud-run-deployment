@@ -29,14 +29,15 @@ app.get('/uncached', (req, res) => {
 app.get('/redis', (req, res) => {
     res.set('Cache-Control', 'no-store');
     client.set("key", "value!", redis.print);
-    client.get("key", (err, reply) => {
+    client.get("counter", (err, reply) => {
+        const counter = reply ? reply + 1 : 1;
+        client.set("counter", counter);
       res.send(`
       <html>
         <head>
         </head>
         <body>
-          <p>Connecting to Redis at: ${process.env.REDIS_IP}</p>
-          <p>Value of key just read: ${reply}</p>
+          <p>Count of visitors: ${reply}</p>
         </body>
       </html>
       `);
