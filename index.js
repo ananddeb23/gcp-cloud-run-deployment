@@ -28,7 +28,7 @@ app.get('/uncached', (req, res) => {
 
 app.get('/redis', (req, res) => {
     res.set('Cache-Control', 'no-store');
-    client.set("key", "value!", redis.print);
+    // client.set("key", "value!", redis.print);
     client.get("counter", (err, reply) => {
         const counter = reply ? reply + 1 : 1;
         client.set("counter", counter);
